@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Libro
+from .forms import LibroForm
 
 # Create your views here.
 def home(request):
@@ -11,5 +12,14 @@ def libro_lista(request):
      }
     return render(request, 'core/libro_lista.html', datos)
 
-def libro_form(request):
-     return render(request, 'core/form_libro')   
+def form_libro(request):
+    datos = {
+
+        'form':LibroForm()
+    }
+    if request.method == 'POST':
+        formulario = LibroForm(request.POST)
+        if formulario.is_valid:
+            formulario.save()
+            datos['mensaje'] = "Datos Ingresados correctamente"
+    return render(request, 'core/form_libro.html', datos)   
