@@ -5,7 +5,6 @@ from .forms import LibroForm
 
 # Create your views here.
 
-
 def home(request):
     return render(request, 'core/home.html')
 
@@ -49,3 +48,5 @@ def form_del_libro(request, id):
     libro = Libro.objects.get(ISBN=id)
     libro.delete()
     return redirect(to="libro_lista")
+
+
