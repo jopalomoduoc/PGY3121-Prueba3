@@ -1,5 +1,5 @@
 jQuery(document).ready(function () {
-    
+
     $("#enviar").click(function () {
 
         var codigo = $("#id_ISBN").val();
@@ -9,10 +9,16 @@ jQuery(document).ready(function () {
 
         var mensaje = "";
 
-        if (codigo == "") {
+        if (codigo !== "") {
+
+            if (codigo.length !== 13) {
+
+                mensaje += "ISBN no es correcto\n";
+            }
+
+        } else {
 
             mensaje += "Ingrese ISBN \n";
-
         }
         if (nombreLibro == "") {
 
@@ -53,7 +59,7 @@ jQuery(document).ready(function () {
             mensaje += "Ingrese Nombre \n";
 
         }
-        
+
         if (correo == "") {
 
             mensaje += "Ingrese Correo \n";
