@@ -20,4 +20,14 @@ class Libro(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.ISBN        
+        return self.ISBN
+
+class Usuario(models.Model):
+    correo = models.CharField(primary_key=True, max_length=50, verbose_name='Correo de Usuario')
+    nombre = models.CharField(max_length=25, verbose_name='Nombre de Usuario')
+    apellido = models.CharField(max_length=25, verbose_name='Apellido de Usuario')
+    password = models.CharField(max_length=12, verbose_name='Contraseña')
+    repeatPassword = models.CharField(max_length=12, verbose_name='Repetir Contraseña')
+
+    def __str__(self):
+        return self.correo
