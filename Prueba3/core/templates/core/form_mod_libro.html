@@ -41,35 +41,22 @@
         </div>
     </nav>
     <!-- Fin Barra de Navegación -->
-    <!-- Inicio Contenido -->
+    <!-- Inicio Contenido-->
     <div class="container">
-        <h1>Listado de Libros</h1>
-        <div class="row">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ISBN</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for li in libros %}
-                    <tr>
-                        <td>{{li.ISBN}}</td>
-                        <td>{{li.nombreLibro}}</td>
-                        <td>{{li.descripcion}}</td>
-                        <td><a href="{% url 'form_mod_libro' li.ISBN %}">Modificar</a></td>
-                        <td><a href="{% url 'form_del_libro' li.ISBN %}">Eliminar</a></td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-           
-        </div>
-        <a class="btn btn-info" href="{% url 'form_libro' %}">Nuevo registro</a>
+        <h1>Modificar Libro</h1>
+        <form action="" method="post" id="formulario">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_table }}
+            </div>
+            <input type="submit" value="Modificar" class="btn btn-success" id="enviar">
+            <input type="button" onclick="history.back()" value="Volver" class="btn btn-primary" id="volver">
+
+        </form>
+        <div class="alert alert-success" role="alert">{{mensaje}}</div>
     </div>
+
+
     <!-- Fin Contenido -->
     <!-- Inicio Footer -->
     <footer class="bg-secondary text-center text-white">
