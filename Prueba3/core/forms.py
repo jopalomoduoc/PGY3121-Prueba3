@@ -21,8 +21,9 @@ class RegistroUsuarioForm(ModelForm):
     correo = forms.CharField()
     nombre = forms.CharField()
     apellido = forms.CharField()
-    password = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "************"}))
-    repeatPassword = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "************"}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "************"}))
+    repeatPassword = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "************"}))
+    
     class Meta:
         model = Usuario
-        fields = ['correo', 'nombre', 'apellido', 'password', 'repeatPassword',]
+        fields = ['correo', 'nombre', 'apellido', 'password', 'repeatPassword','comentario',]

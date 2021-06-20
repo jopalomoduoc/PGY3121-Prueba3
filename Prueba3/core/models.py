@@ -28,6 +28,8 @@ class Usuario(models.Model):
     apellido = models.CharField(max_length=25, verbose_name='Apellido de Usuario')
     password = models.CharField(max_length=12, verbose_name='Contraseña')
     repeatPassword = models.CharField(max_length=12, verbose_name='Repetir Contraseña')
+    comentario = models.TextField(max_length=255, verbose_name='Comentario')
+
 
     def __str__(self):
         return self.correo

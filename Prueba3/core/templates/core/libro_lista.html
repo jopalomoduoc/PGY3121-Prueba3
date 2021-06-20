@@ -1,6 +1,7 @@
 {% extends "core/base_layout.html" %}
 
 {% block content %}
+{% load static %}
     <div class="container">
         <h1>Listado de Libros</h1>
         <div class="row">
@@ -19,13 +20,19 @@
                         <td>{{li.ISBN}}</td>
                         <td>{{li.nombreLibro}}</td>
                         <td>{{li.descripcion}}</td>
-                        <td><a href="{% url 'form_mod_libro' li.ISBN %}">Modificar</a></td>
-                        <td><a href="{% url 'form_del_libro' li.ISBN %}">Eliminar</a></td>
+                        <td><a href="{% url 'form_mod_libro' li.ISBN %}"><img src="{% static 'core/img/imagen_editar.png'%}" alt="Actualizar" /></a>
+                        <a href="{% url 'form_del_libro' li.ISBN %}"><img src="{% static 'core/img/eliminar.png'%}" alt="Eliminar" /></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-           
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
         </div>
         <a class="btn btn-info" href="{% url 'form_libro' %}">Nuevo registro</a>
     </div>

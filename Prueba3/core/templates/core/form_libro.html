@@ -1,17 +1,36 @@
 {% extends "core/base_layout.html" %}
 
 {% block content %}
-    <div class="container">
-        <h1>Registrar Libro</h1>
-        <form action="" method="post" id="formulario">
-            {% csrf_token %}
-            <div class="form-group">
-                {{ form.as_table }}
-            </div>
-            <input type="submit" value="Enviar" class="btn btn-success" id="enviar">
-            <a href="{% url 'libro_lista' %}" class="btn btn-primary" role="button" aria-pressed="true">Volver a Listado</a>
+<style>
 
-        </form>
-        <div role="alert">{{mensaje}}</div>
-    </div>
+    #formularioIngreso {
+        width: 150px;
+        margin: 0;
+
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+
+    }
+
+    .button {
+
+        padding-top: 1em;
+    }
+</style>
+<div class="container">
+    <a href="{% url 'libro_lista' %}" class="btn btn-primary" role="button" aria-pressed="true">Volver a Listado</a>
+    <h1>Registrar Libro</h1>
+    <form action="" method="post" id="formularioIngreso">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_table }}
+        </div>
+        <div class="button">
+            <input type="submit" value="Enviar" class="btn btn-success" id="enviar">
+        </div>
+
+    </form>
+    
+</div>
 {% endblock content %}
