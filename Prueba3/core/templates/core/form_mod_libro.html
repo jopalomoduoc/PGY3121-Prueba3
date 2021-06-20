@@ -50,10 +50,10 @@
                 {{ form.as_table }}
             </div>
             <input type="submit" value="Modificar" class="btn btn-success" id="enviar">
-            <input type="button" onclick="history.back()" value="Volver" class="btn btn-primary" id="volver">
+            <a href="{% url 'libro_lista' %}" class="btn btn-primary" role="button" aria-pressed="true">Volver a Listado</a>
 
         </form>
-        <div class="alert alert-success" role="alert">{{mensaje}}</div>
+        <div role="alert">{{mensaje}}</div>
     </div>
 
 

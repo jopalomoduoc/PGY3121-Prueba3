@@ -3,6 +3,15 @@ from django.forms import ModelForm
 from .models import Libro
 
 class LibroForm(ModelForm):
+    ISBN = forms.CharField(label='ISBN',widget=forms.TextInput(attrs={"placeholder": "13 dígitos"}))
+    nombreLibro = forms.CharField(label='Nombre Libro')
+    descripcion = forms.CharField(label='Descripción')
     class Meta:
         model = Libro
-        fields = ['ISBN','nombreLibro','descripcion','categoria',] 
+        fields = ['ISBN','nombreLibro','descripcion','categoria',]
+    
+    def clean_ISBN(self):
+        ISBN = self.cleaned_data.get("ISBN")
+        if not len(ISBN) == 13:
+            raise forms.ValidationError("ISBN no válido")
+        return ISBN

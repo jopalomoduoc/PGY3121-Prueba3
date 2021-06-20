@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from .models import Libro
 from .forms import LibroForm
@@ -19,14 +20,16 @@ def libro_lista(request):
 
 def form_libro(request):
     datos = {
-
         'form': LibroForm()
     }
     if request.method == 'POST':
         formulario = LibroForm(request.POST)
-        if formulario.is_valid:
+        if formulario.is_valid():
             formulario.save()
+            formulario = LibroForm()
             datos['mensaje'] = "Datos Ingresados correctamente"
+        else:
+            datos['mensaje'] = "ISBN Incorrecto"
     return render(request, 'core/form_libro.html', datos)
 
 
