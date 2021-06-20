@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
-from .models import Libro
-from .forms import LibroForm
+from .models import Libro, Usuario
+from .forms import LibroForm, RegistroUsuarioForm
 
 # Create your views here.
 
@@ -48,5 +48,19 @@ def form_del_libro(request, id):
     libro = Libro.objects.get(ISBN=id)
     libro.delete()
     return redirect(to="libro_lista")
+
+def form_registro_usuario(request):
+    datos = {
+        'form': RegistroUsuarioForm()
+    }
+    if request.method == 'POST':
+        formulario = RegistroUsuarioForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            formulario = RegistroUsuarioForm()
+            datos['mensaje'] = "Datos Ingresados correctamente"
+        else:
+            datos['mensaje'] = "Incorrecto"
+    return render(request, 'core/form_registro_usuario.html', datos)
 
 
