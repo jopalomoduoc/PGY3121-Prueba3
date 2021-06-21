@@ -47,6 +47,7 @@ jQuery(document).ready(function () {
     $("#enviarUsuario").click(function () {
 
         var nombre = $("#id_nombre").val();
+        var apellido = $("#id_apellido").val();
         var correo = $("#id_correo").val();
         var comentario = $("#id_comentario").val();
         var contraseña = $("#id_password").val();
@@ -60,8 +61,18 @@ jQuery(document).ready(function () {
 
         }
 
-        if (correo == "") {
+        if (apellido == "") {
 
+            mensaje += "Ingrese Apellido \n";
+
+        }
+
+        if (correo !== "") {
+
+            if (correo.contains('@') || correo.contains('.')) {
+                mensaje += "El correo electrónico introducido no es correcto.";
+            }
+        } else {
             mensaje += "Ingrese Correo \n";
         }
         if (contraseña == "") {
