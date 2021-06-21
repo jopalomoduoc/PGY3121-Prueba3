@@ -67,13 +67,17 @@ jQuery(document).ready(function () {
 
         }
 
-        if (correo !== "") {
-
-            if (correo.contains('@') || correo.contains('.')) {
-                mensaje += "El correo electrónico introducido no es correcto.";
-            }
-        } else {
+        if (correo == "") {
             mensaje += "Ingrese Correo \n";
+           
+        } else {
+           
+            var validaFormatoCorreo = caracteresCorreoValido(correo);
+
+            if (validaFormatoCorreo==false) {
+
+                mensaje += "Formato de correo incorrecto, Vuelve a ingresarlo!\n";
+            }
         }
         if (contraseña == "") {
 
@@ -101,8 +105,22 @@ jQuery(document).ready(function () {
             return false;
 
         }
+        function caracteresCorreoValido(correo) {
+
+
+            var caract = new RegExp(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/);
+
+            if (caract.test(correo) == false) {
+
+                return false;
+            } else {
+
+                return true;
+            }
+        }
 
     });
+
 
 });
 
