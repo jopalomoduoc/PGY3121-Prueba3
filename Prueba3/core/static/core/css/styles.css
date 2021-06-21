@@ -11,3 +11,29 @@ body{
 footer{
     margin-top: auto;
 }
+
+#formularioIngreso {
+    width: 150px;
+    margin: 0;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+}
+
+.button {
+
+    padding-top: 1em;
+}
+
+#id_comentario{
+
+    width: 200px;
+    height: 100px;
+}
+
+#imagen_registro_exitoso{
+    width: 50%;
+    height: 50%;
+}
