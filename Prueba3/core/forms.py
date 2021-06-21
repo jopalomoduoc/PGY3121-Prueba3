@@ -11,11 +11,11 @@ class LibroForm(ModelForm):
         model = Libro
         fields = ['ISBN','nombreLibro','descripcion','categoria',]
     
-    def clean_ISBN(self):
-        ISBN = self.cleaned_data.get("ISBN")
-        if not len(ISBN) == 13:
-            raise forms.ValidationError("ISBN no válido")
-        return ISBN
+    # def clean_ISBN(self):
+    #     ISBN = self.cleaned_data.get("ISBN")
+    #     if not len(ISBN) == 13:
+    #         raise forms.ValidationError("ISBN no válido")
+    #     return ISBN
 
 class RegistroUsuarioForm(ModelForm):
     correo = forms.CharField()
