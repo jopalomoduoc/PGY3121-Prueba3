@@ -1,19 +1,35 @@
 jQuery(document).ready(function () {
-
+    (function($) {
+        $.fn.inputFilter = function(inputFilter) {
+          return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+            if (inputFilter(this.value)) {
+              this.oldValue = this.value;
+              this.oldSelectionStart = this.selectionStart;
+              this.oldSelectionEnd = this.selectionEnd;
+            } else if (this.hasOwnProperty("oldValue")) {
+              this.value = this.oldValue;
+              this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+            }
+          });
+        };
+      }(jQuery));
+    $("#id_ISBN").inputFilter(function(value) {
+        return /^\d*$/.test(value);
+      });
     $("#enviar").click(function () {
 
         var codigo = $("#id_ISBN").val();
         var nombreLibro = $("#id_nombreLibro").val();
         var descripcion = $("#id_descripcion").val();
         var categoria = $("#id_categoria").val();
-
+        
         var mensaje = "";
 
         if (codigo !== "") {
 
             if (codigo.length !== 13) {
 
-                mensaje += "ISBN no es correcto\n";
+                mensaje += "ISBN no es correcto, son 13 numeros!\n";
             }
 
         } else {
@@ -76,7 +92,7 @@ jQuery(document).ready(function () {
 
             if (validaFormatoCorreo==false) {
 
-                mensaje += "Formato de correo incorrecto, Vuelve a ingresarlo!\n";
+                mensaje += "Formato de correo incorrecto, vuelve a ingresarlo!\n";
             }
         }
         if (contraseña == "") {
@@ -91,7 +107,7 @@ jQuery(document).ready(function () {
         }
         if (contraseña !== confContraseña) {
 
-            mensaje += "Las Contraseñas no son iguales Corrígelas \n";
+            mensaje += "Las Contraseñas no son iguales, corrígelas \n";
 
         }
         if (comentario == "") {
